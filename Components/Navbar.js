@@ -1,10 +1,8 @@
 import React from "react"
 import {Font} from 'expo'
-import {View, Text} from "react-native"
+import {View, Text, TouchableOpacity,TouchableWithoutFeedback} from "react-native"
 import styles from "./Styles/NavbarStyles"
-import { createIconSetFromFontello } from '@expo/vector-icons';
-import fontelloConfig from '../Theme/Fonts/config.json';
-const Icon = createIconSetFromFontello(fontelloConfig, 'recipes');
+import Icon from './CustomIcon'
 
 class NavBar extends React.Component {
     state = {
@@ -20,17 +18,38 @@ class NavBar extends React.Component {
     backButton = () => {
         const { leftButton } = this.props
         if(leftButton){
-            return <Icon name="left" style={styles.favIco}></Icon>
+            return (
+                <TouchableOpacity onPress={() => alert("back")}>
+                    <Icon name="left" style={styles.favIco}></Icon>
+                </TouchableOpacity>
+                
+            )
         }
     }
 
+    pressFavorite = () => {
+        const {onPressFavorite} = this.props
+        if(typeof onPressFavorite === 'function')
+        {
+            onPressFavorite()
+        }
+    }
     rightButton = () => {
         const {rightButton, favorites} = this.props
         if(rightButton){
             if(favorites){
-                return <Icon name="favorites" style={[styles.favIco,styles.favorite]}></Icon>
+                return (
+                    <TouchableWithoutFeedback onPress={this.pressFavorite}>
+                        <Icon name="favorites" style={[styles.favIco,styles.favorite]}></Icon>
+                    </TouchableWithoutFeedback>
+                )
+                
             }else{
-                return <Icon name="favorites" style={styles.favIco}></Icon>
+                return (
+                    <TouchableWithoutFeedback onPress={this.pressFavorite}>
+                        <Icon name="favorites" style={styles.favIco}></Icon>
+                    </TouchableWithoutFeedback>
+                )
             }
             
         }
