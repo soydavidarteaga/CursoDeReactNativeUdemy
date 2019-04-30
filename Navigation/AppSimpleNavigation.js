@@ -1,19 +1,28 @@
-import {createStackNavigator, createBottonTabNavigation} from 'react-navigation'
+import {createStackNavigator, createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import GenericScreen from '../Containers/GenericScreen'
+import ExploreScreen from "../Containers/ExploreScreen"
 
-const TabNav =  createBottonTabNavigation({
-    Expore:{screen:GenericScreen},
-    Categories:{screen:GenericScreen},
-    Favorites:{screen:GenericScreen}
-})
-
-const AppSimpleNavigator = createStackNavigator(
+const TabNav =  createBottomTabNavigator(
     {
-        Home:{screen:GenericScreen}
+        Explore:{screen:ExploreScreen},
+        Categories:{screen:GenericScreen},
+        Favorites:{screen:GenericScreen}
     },
     {
-        headerMode:"none"
+        headerMode:"none",
+        initialRouteName:"Explore"
     }
 )
 
-export default AppSimpleNavigator;
+const NavStack = createStackNavigator(
+    {
+        Home:{screen:TabNav}
+    },
+    {
+        headerMode:"none", 
+    }
+)
+
+const AppNavigator = createAppContainer(NavStack);
+
+export default AppNavigator;

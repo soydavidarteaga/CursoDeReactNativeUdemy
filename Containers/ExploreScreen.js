@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import styles from './styles/GenericScreenStyles'
 import NavBar from "../Components/Navbar"
+import RecipeRow from "../Components/RecipeRow"
 
-export default class GenericScreen extends React.Component {
+export default class ExploreScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -20,7 +21,13 @@ export default class GenericScreen extends React.Component {
   render() {
     const {favorite} = this.state
     return (
-      <NavBar leftButton={true} rightButton={true} onPressFavorite={this.pressFavorite} favorites={favorite} title="Pantalla Generica" style={styles.navbar} />
+      <View style={styles.mainScreen}>
+        <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
+        <RecipeRow/>
+        <RecipeRow/>
+        <RecipeRow/>
+      </View>
+      
     );
   }
 }
