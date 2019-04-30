@@ -5,16 +5,21 @@ import {Font} from 'expo'
 import AppNavigator from './Navigation/AppSimpleNavigation';
 
 export default class App extends React.Component {
+  state = {
+    fontLoaded: false
+  }
   async componentDidMount() {
     await Font.loadAsync({
-      'montserrat-light': require('./assets/fonts/Montserrat-Light.ttf'),
-      'montserrat-regular': require('./assets/fonts/Montserrat-Regular.ttf'),
-      'montserrat-semibold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
-      'proximanova-bold': require('./assets/fonts/ProximaNova-Bold.ttf'),
+      'Montserrat-light': require('./assets/fonts/Montserrat-Light.ttf'),
+      'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
+      'Montserrat-semibold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
+      'Proximanova-bold': require('./assets/fonts/ProximaNova-Bold.ttf'),
+      'recipes': require('./assets/fonts/recipes.ttf')
     });
     this.setState({ fontLoaded: true });
   }  
   render() {
+    if (!this.state.fontLoaded) { return null;}
     return (
       //<GenericScreen></GenericScreen>
       <AppNavigator></AppNavigator>
