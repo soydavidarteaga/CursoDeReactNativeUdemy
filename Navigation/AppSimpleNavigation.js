@@ -1,11 +1,12 @@
 import {createStackNavigator, createAppContainer,createBottomTabNavigator} from 'react-navigation'
 import GenericScreen from '../Containers/GenericScreen'
 import ExploreScreen from "../Containers/ExploreScreen"
+import CategoriesScreen from "../Containers/CategoriesScreen"
 
 const TabNav =  createBottomTabNavigator(
     {
         Explore:{screen:ExploreScreen},
-        Categories:{screen:GenericScreen},
+        Categories:{screen:CategoriesScreen},
         Favorites:{screen:GenericScreen}
     },
     {

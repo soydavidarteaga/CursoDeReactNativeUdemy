@@ -13,7 +13,7 @@ export default class App extends React.Component {
       'Montserrat-light': require('./assets/fonts/Montserrat-Light.ttf'),
       'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
       'Montserrat-semibold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
-      'Proximanova-bold': require('./assets/fonts/ProximaNova-Bold.ttf'),
+      'ProximaNova-Bold': require('./assets/fonts/ProximaNova-Bold.ttf'),
       'recipes': require('./assets/fonts/recipes.ttf')
     });
     this.setState({ fontLoaded: true });
