@@ -10,10 +10,21 @@ const TabNav =  createBottomTabNavigator(
         Favorites:{screen:GenericScreen}
     },
     {
-        headerMode:"none",
-        initialRouteName:"Explore"
+        headerMode: "none",
+        initialRouteName: "Explore",
+        
+        navigationOptions:{
+            tabBarVisible:false,
+            header:null,
+        }
     }
 )
+
+TabNav.navigationOptions = {
+    // Hide the header from AppNavigator stack
+    header: null,
+    tabBarVisible:false
+  };
 
 const NavStack = createStackNavigator(
     {

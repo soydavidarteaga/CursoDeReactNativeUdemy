@@ -18,8 +18,12 @@ export default class App extends React.Component {
     });
     this.setState({ fontLoaded: true });
   }  
+  static navigationOptions = {
+    tabBarVisible: false
+  }
   render() {
     if (!this.state.fontLoaded) { return null;}
+    
     return (
       //<GenericScreen></GenericScreen>
       <AppNavigator></AppNavigator>

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View,FlatList } from 'react-native';
 import styles from './styles/GenericScreenStyles'
 import NavBar from "../Components/Navbar"
 import RecipeRow from "../Components/RecipeRow"
+import TabBar from '../Components/TabBar';
 
 const dataList = [
   {
@@ -74,12 +75,16 @@ export default class ExploreScreen extends React.Component {
       />
     )
   }
+  static navigationOptions = {
+    tabBarVisible: false
+  }
   render() {
     const {favorite} = this.state
     return (
       <View style={styles.mainScreen}>
         <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
         {this.renderList()}
+        <TabBar selected="explore"></TabBar>
       </View>
       
     );
