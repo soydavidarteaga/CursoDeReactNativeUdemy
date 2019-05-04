@@ -3,6 +3,7 @@ import {Font} from 'expo'
 import {View, Text, TouchableOpacity,TouchableWithoutFeedback} from "react-native"
 import styles from "./Styles/NavbarStyles"
 import Icon from './CustomIcon'
+import {withNavigation} from "react-navigation"
 
 class NavBar extends React.Component {
     state = {
@@ -17,9 +18,10 @@ class NavBar extends React.Component {
       }    
     backButton = () => {
         const { leftButton } = this.props
+        const {navigation} = this.props
         if(leftButton){
             return (
-                <TouchableOpacity onPress={() => alert("back")}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Icon name="left" style={styles.favIco}></Icon>
                 </TouchableOpacity>
                 
@@ -75,4 +77,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default withNavigation(NavBar);

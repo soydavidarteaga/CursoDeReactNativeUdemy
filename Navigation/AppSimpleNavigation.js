@@ -2,6 +2,7 @@ import {createStackNavigator, createAppContainer,createBottomTabNavigator} from 
 import GenericScreen from '../Containers/GenericScreen'
 import ExploreScreen from "../Containers/ExploreScreen"
 import CategoriesScreen from "../Containers/CategoriesScreen"
+import RecipeDetailsScreen from '../Containers/RecipeDetailsScreen';
 
 const TabNav =  createBottomTabNavigator(
     {
@@ -28,7 +29,8 @@ TabNav.navigationOptions = {
 
 const NavStack = createStackNavigator(
     {
-        Home:{screen:TabNav}
+        Home:{screen:TabNav},
+        Details:{screen:RecipeDetailsScreen}
     },
     {
         headerMode:"none", 
