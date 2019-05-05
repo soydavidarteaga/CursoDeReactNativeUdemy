@@ -17,12 +17,12 @@ class NavBar extends React.Component {
         this.setState({fontLoaded: true});
       }    
     backButton = () => {
-        const { leftButton } = this.props
+        const { leftButton , transparent } = this.props
         const {navigation} = this.props
         if(leftButton){
             return (
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Icon name="left" style={styles.favIco}></Icon>
+                    <Icon name="left" style={[styles.favIco,transparent ? styles.alternate: null]}></Icon>
                 </TouchableOpacity>
                 
             )
@@ -37,19 +37,19 @@ class NavBar extends React.Component {
         }
     }
     rightButton = () => {
-        const {rightButton, favorites} = this.props
+        const {rightButton, favorites,transparent} = this.props
         if(rightButton){
             if(favorites){
                 return (
                     <TouchableWithoutFeedback onPress={this.pressFavorite}>
-                        <Icon name="favorites" style={[styles.favIco,styles.favorite]}></Icon>
+                        <Icon name="favorites" style={[styles.favIco,styles.favorite,transparent ? styles.alternate: null]}></Icon>
                     </TouchableWithoutFeedback>
                 )
                 
             }else{
                 return (
                     <TouchableWithoutFeedback onPress={this.pressFavorite}>
-                        <Icon name="favorites" style={styles.favIco}></Icon>
+                        <Icon name="favorites" style={[styles.favIco,transparent ? styles.alternate: null]}></Icon>
                     </TouchableWithoutFeedback>
                 )
             }
@@ -57,11 +57,11 @@ class NavBar extends React.Component {
         }
     }
     render(){
-        const {style,title} = this.props;
+        const {style,title,transparent} = this.props;
 
         if (!this.state.fontLoaded) { return null;}
         return (
-            <View style={styles.navbar}>
+            <View style={[styles.navbar,transparent ? styles.transparent: null]}>
                 <View style={styles.leftContainer}>
                     {this.backButton()}
                 </View>
