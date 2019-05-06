@@ -4,7 +4,6 @@ import styles from './styles/GenericScreenStyles'
 import NavBar from "../Components/Navbar"
 import RecipeRow from "../Components/RecipeRow"
 import TabBar from '../Components/TabBar';
-import RecomendationBox from '../Components/RecomendationBox';
 
 const dataList = [
   {
@@ -51,7 +50,7 @@ const dataList = [
   }
 ]
 
-export default class ExploreScreen extends React.Component {
+export default class FavoriteScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -70,15 +69,11 @@ export default class ExploreScreen extends React.Component {
   renderList = () => {
     return(
       <FlatList
-        ListHeaderComponent={this.renderRecomended}
         keyExtractor={this.keyExtractor}
         data={dataList}
         renderItem={({item}) => <RecipeRow data={item}/>}
       />
     )
-  }
-  renderRecomended = () => {
-    return <RecomendationBox data={dataList}></RecomendationBox>
   }
   static navigationOptions = {
     tabBarVisible: false
@@ -87,9 +82,9 @@ export default class ExploreScreen extends React.Component {
     const {favorite} = this.state
     return (
       <View style={styles.mainScreen}>
-        <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
+        <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Favoritos" style={styles.navbar} />
         {this.renderList()}
-        <TabBar selected="explore"></TabBar>
+        <TabBar selected="favorites"></TabBar>
       </View>
       
     );

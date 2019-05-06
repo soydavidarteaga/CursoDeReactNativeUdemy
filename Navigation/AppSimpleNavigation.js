@@ -3,12 +3,14 @@ import GenericScreen from '../Containers/GenericScreen'
 import ExploreScreen from "../Containers/ExploreScreen"
 import CategoriesScreen from "../Containers/CategoriesScreen"
 import RecipeDetailsScreen from '../Containers/RecipeDetailsScreen';
+import FavoriteScreen from '../Containers/FavoriteScreen';
+import CategoryScreen from '../Containers/CategoryScreen';
 
 const TabNav =  createBottomTabNavigator(
     {
         Explore:{screen:ExploreScreen},
         Categories:{screen:CategoriesScreen},
-        Favorites:{screen:GenericScreen}
+        Favorites:{screen:FavoriteScreen}
     },
     {
         headerMode: "none",
@@ -30,7 +32,8 @@ TabNav.navigationOptions = {
 const NavStack = createStackNavigator(
     {
         Home:{screen:TabNav},
-        Details:{screen:RecipeDetailsScreen}
+        Details:{screen:RecipeDetailsScreen},
+        Category:{screen:CategoryScreen}
     },
     {
         headerMode:"none", 

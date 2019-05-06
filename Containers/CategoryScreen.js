@@ -5,6 +5,7 @@ import NavBar from "../Components/Navbar"
 import RecipeRow from "../Components/RecipeRow"
 import TabBar from '../Components/TabBar';
 import RecomendationBox from '../Components/RecomendationBox';
+import { withNavigation } from 'react-navigation';
 
 const dataList = [
   {
@@ -51,7 +52,7 @@ const dataList = [
   }
 ]
 
-export default class ExploreScreen extends React.Component {
+class CategoryScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -70,28 +71,27 @@ export default class ExploreScreen extends React.Component {
   renderList = () => {
     return(
       <FlatList
-        ListHeaderComponent={this.renderRecomended}
         keyExtractor={this.keyExtractor}
         data={dataList}
         renderItem={({item}) => <RecipeRow data={item}/>}
       />
     )
   }
-  renderRecomended = () => {
-    return <RecomendationBox data={dataList}></RecomendationBox>
-  }
   static navigationOptions = {
     tabBarVisible: false
   }
   render() {
     const {favorite} = this.state
+    const {navigation} = this.props
+    const category = navigation.getParam("category", {});
     return (
       <View style={styles.mainScreen}>
-        <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
+        <NavBar leftButton={true} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title={category.name} style={styles.navbar} />
         {this.renderList()}
-        <TabBar selected="explore"></TabBar>
       </View>
       
     );
   }
 }
+
+export default withNavigation(CategoryScreen)

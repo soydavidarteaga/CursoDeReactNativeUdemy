@@ -5,6 +5,7 @@ import styles from './styles/GenericScreenStyles'
 import NavBar from "../Components/Navbar"
 import CategoryRow from "../Components/CategoryRow"
 import TabBar from "../Components/TabBar"
+import { withNavigation } from 'react-navigation';
 
 
 const dataList = [
@@ -68,7 +69,7 @@ export default class CategoriesScreen extends React.Component {
     const {favorite} = this.state
     return (
         <View style={styles.mainScreen}>
-            <NavBar leftButton={true} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Categorias" style={styles.navbar} />
+            <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Categorias" style={styles.navbar} />
             {this.renderList()}
             <TabBar selected="categories"></TabBar>
         </View>
