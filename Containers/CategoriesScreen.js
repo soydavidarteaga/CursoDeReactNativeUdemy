@@ -6,38 +6,10 @@ import NavBar from "../Components/Navbar"
 import CategoryRow from "../Components/CategoryRow"
 import TabBar from "../Components/TabBar"
 import { withNavigation } from 'react-navigation';
+import {observer,inject} from "mobx-react/native"
 
-
-const dataList = [
-    {
-        id:"1",
-        name:"Categoria 1"
-    },
-    {
-        id:"2",
-        name:"Categoria 2"
-    },
-    {
-        id:"3",
-        name:"Categoria 3"
-    },
-    {
-        id:"4",
-        name:"Categoria 4"
-    },
-    {
-        id:"5",
-        name:"Categoria 5"
-    },
-    {
-        id:"6",
-        name:"Categoria 6"
-    },
-    {
-        id:"7",
-        name:"Categoria 7"
-    },                        
-]
+@inject("recipes")
+@observer
 export default class CategoriesScreen extends React.Component {
   constructor(props){
     super(props)
@@ -52,12 +24,17 @@ export default class CategoriesScreen extends React.Component {
     })
   } 
 
+  componentDidMount = () => {
+    const {recipes} = this.props
+    recipes.getCategories()
+  }
   keyExtractor = (item,index) => item.id;
   renderList = () => {
+    const {recipes} = this.props
     return(
       <FlatList
         keyExtractor={this.keyExtractor}
-        data={dataList}
+        data={recipes.categoriesSource}
         renderItem={({item}) => <CategoryRow data={item}/>}
       />
     )

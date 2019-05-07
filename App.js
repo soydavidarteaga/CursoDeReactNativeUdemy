@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import GenericScreen from './Containers/GenericScreen'
 import {Font} from 'expo'
+import {Provider} from 'mobx-react/native'
+import stores from './MobX'
 import AppNavigator from './Navigation/AppSimpleNavigation';
 
 export default class App extends React.Component {
@@ -25,8 +27,10 @@ export default class App extends React.Component {
     if (!this.state.fontLoaded) { return null;}
     
     return (
-      //<GenericScreen></GenericScreen>
-      <AppNavigator></AppNavigator>
+      <Provider {...stores}>
+        <AppNavigator></AppNavigator>
+      </Provider>
+      
     );
   }
 }
