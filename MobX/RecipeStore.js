@@ -1,5 +1,6 @@
 import {observable,computed} from "mobx"
-
+import API from "../Service/Api"
+const api = API.create();
 const dataList = [
     {
       "id": "52944",
@@ -102,41 +103,53 @@ class RecipeStore{
         return this.recomended.slice()
     }       
 
-    getCategories(){
+    async getCategories(){
         this.loading = true
-        setTimeout(() => {
-            this.loading = false
-            this.categories = categoriesList
-        },1000)
+        const response = await api.getCategories()
+        
+        if(response.ok && response.data)
+        {
+            this.categories = response.data
+        }else{
+            this.categories = []
+        }
     }
-    getFavorites(){
+    async getFavorites(){
         this.loading = true
-        setTimeout(() => {
+        const response = await api.getFavorites()
+        if(response.ok && response.data)
+        {
             this.loading = false
-            this.favorites = dataList
-        },1000)
+            this.favorites = response.data
+        }else{
+            this.loading = false
+            this.favorites = []
+        } 
     }
-    getRecomended(){
+    async getRecomended(){
         this.loading = true
-        setTimeout(() => {
+        const response = await api.getRecomended()
+        if(response.ok && response.data)
+        {
             this.loading = false
-            this.recomended = dataList
-        },1000)        
+            this.recomended = response.data
+        }else{
+            this.loading = false
+            this.recomended = []
+        }       
     }
 
-    getRecipes(categoryId = null){
-        this.loading = true
-        setTimeout(() => {
-            this.loading = false
-            if(categoryId){
-                this.recipes = dataList.filter(item => {
-                    return item.categoryId == categoryId;
-                })
-            }else{
-                this.recipes = dataList;
-            }
-        },1000)
-    }
+    async getRecipes(categoryId = null) {
+        this.loading = true;
+    
+        const response = await api.getRecipes(categoryId || null);
+        this.loading = false;
+        if (response.ok && response.data) {
+          this.recipes = response.data;
+        } else {
+          this.recipes = [];
+        }
+      }
 }
 
 export default RecipeStore;
