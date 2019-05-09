@@ -28,7 +28,20 @@ class NavBar extends React.Component {
             )
         }
     }
-
+    openMenu = () => {
+        const {navigation} = this.props
+        navigation.openDrawer()
+    }
+    menuButton = () => {
+        const {menuButton} = this.props;
+        if(menuButton){
+            return (
+                <TouchableOpacity onPress={this.openMenu}>
+                    <Icon name="menu" style={styles.favIco} />
+                </TouchableOpacity>
+            )
+        }
+    }
     pressFavorite = () => {
         const {onPressFavorite} = this.props
         if(typeof onPressFavorite === 'function')
@@ -64,7 +77,8 @@ class NavBar extends React.Component {
             <View style={[styles.navbar,transparent ? styles.transparent: null]}>
                 <View style={styles.leftContainer}>
                     {this.backButton()}
-                </View>
+                    {this.menuButton()}
+                </View>               
                 <View style={styles.titleWrapper}>
                     <Text style={styles.navbarText}>{title}</Text>
                 </View>

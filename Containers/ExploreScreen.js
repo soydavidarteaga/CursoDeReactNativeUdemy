@@ -52,7 +52,7 @@ class ExploreScreen extends React.Component {
     const {favorite} = this.state
     return (
       <View style={styles.mainScreen}>
-        <NavBar leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
+        <NavBar menuButton={true} leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Explore" style={styles.navbar} />
         {this.renderList()}
         <TabBar selected="explore"></TabBar>
       </View>
