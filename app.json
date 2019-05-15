@@ -1,18 +1,21 @@
 {
   "expo": {
-    "name": "CursoReactNative",
-    "description": "This project is really great.",
-    "slug": "CursoReactNative",
+    "name": "AppRecetas",
+    "description": "Este es mi proyecto de recetas, basado en el reto de 100 dias de codigo, fue hecho como una practica para aprender React Native. Version 1.0",
+    "slug": "apprecetas",
     "privacy": "public",
     "sdkVersion": "31.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ff7f27"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,7 +24,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.soydavidarteaga.apprecetas"
+    },
+    "android": {
+      "package": "com.soydavidarteaga.apprecetas"
+    },   
+    "githubUrl": "https://github.com/soydavidarteaga/CursoDeReactNativeUdemy"
   }
 }

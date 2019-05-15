@@ -7,11 +7,13 @@ import FavoriteScreen from '../Containers/FavoriteScreen';
 import CategoryScreen from '../Containers/CategoryScreen';
 import InfoScreen from '../Containers/InfoScreen';
 import SideMenu from "../Components/SideMenu"
+import UploadScreen from "../Containers/UploadScreen"
 
 
 const TabNav =  createBottomTabNavigator(
     {
         Explore:{screen:ExploreScreen},
+        Upload:{screen:UploadScreen},
         Categories:{screen:CategoriesScreen},
         Favorites:{screen:FavoriteScreen}
     },

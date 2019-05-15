@@ -23,6 +23,11 @@ class TabBar extends React.Component{
                     routeName:"Favorites"
                 })
                 break;
+            case "upload":
+                navigation.navigate({
+                    routeName:"Upload"
+                })
+                break;                
         }
     }
     renderTab = ({route,icon}) => {
@@ -44,6 +49,7 @@ class TabBar extends React.Component{
         return (
             <View style={styles.container}>
                 {this.renderTab({route:"explore",icon:"home"})}
+                {this.renderTab({route:"upload",icon:"folder-open-empty"})}
                 {this.renderTab({route:"categories",icon:"recipes"})}
                 {this.renderTab({route:"favorites",icon:"favorites"})}
             </View>

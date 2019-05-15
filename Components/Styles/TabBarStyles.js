@@ -8,7 +8,8 @@ export default styles = StyleSheet.create({
     flexDirection:"row",
     justifyContent:"center",
     alignItems:"flex-start",
-    backgroundColor:Colors.whiteFull
+    backgroundColor:Colors.whiteFull,
+    bottom:0
   },
   tab:{
     flex:1,
