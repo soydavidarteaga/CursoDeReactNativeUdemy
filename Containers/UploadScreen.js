@@ -1,23 +1,68 @@
 import React from 'react';
-import { StyleSheet, Text, View,ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,ScrollView, TextInput, TouchableOpacity, Picker } from 'react-native'
 import styles from './styles/UploadScreenStyles'
 import NavBar from "../Components/Navbar"
 import TabBar from '../Components/TabBar';
 import {observer, inject} from 'mobx-react/native'
+import GenerateForm from 'react-native-form-builder';
 
-
+const fields = [
+  {
+    type: 'text',
+    name: 'ame',
+    required: true,
+    icon: 'ios-person',
+    label: 'Name',
+  },
+  {
+    type: 'picker',
+    name: 'category',
+    mode: 'dialog',
+    label: 'Categoria',
+    defaultValue: 'PRIMEROS',
+    options: ['PRIMEROS','MIXTOS','CARNE','PESCADO'],    
+  },
+  {
+    type: 'picker',
+    name: 'complexity',
+    mode: 'dialog',
+    label: 'Complejidad',
+    defaultValue: 'Facil',
+    options: ['Facil','Intermedio','Dificil'],    
+  },  
+  {
+    type: 'text',
+    name: 'person',
+    required: true,
+    label: 'Personas',
+  },
+  {
+    type: 'text',
+    name: 'ingredients',
+    required: true,
+    label: 'Ingredientes',
+  },
+  {
+    type: 'text',
+    name: 'description',
+    required: true,
+    label: 'Descripcion',
+    multiline: true
+  }
+]
 class UploadScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {  
       example:5,
-      favorite:true
+      favorite:true,      
     }
   }
   pressFavorite = () => {
     const {favorite} = this.state;
     this.setState({
       favorite:!favorite
+
     })
   } 
 
@@ -33,12 +78,12 @@ class UploadScreen extends React.Component {
       <View style={styles.mainScreen}>
         <NavBar menuButton={false} leftButton={false} rightButton={false} onPressFavorite={this.pressFavorite} favorites={favorite} title="Añadir receta" style={styles.navbar} />
         <ScrollView style={styles.form}>
-            <TextInput style={styles.input} placeholder="Nombre de receta"></TextInput>
-            <TextInput style={styles.input} placeholder="Categoria"></TextInput>
-            <TextInput style={styles.input} placeholder="Complejidad"></TextInput>
-            <TextInput style={styles.input} placeholder="Personas"></TextInput>
-            <TextInput style={styles.input} placeholder="Ingredientes. Separados por coma(,)"></TextInput>
-            <TextInput style={[styles.input,styles.textArea]} placeholder="Descripcion"></TextInput>
+              <GenerateForm
+                ref={(c) => {
+                  this.formGenerator = c;
+                }}
+                fields={fields}
+              />
             <TouchableOpacity style={styles.button}><Text style={styles.textButton}>Guardar</Text></TouchableOpacity>
         </ScrollView>
         <TabBar selected="upload"></TabBar>
